@@ -46,5 +46,5 @@ def startup_event():
     Redis()
     print('redis')
     
-app.include_router(result_router, prefix="/", tags=["main"])
+app.include_router(result_router, tags=["main"])
 # app.include_router(notes.router, prefix="/notes", tags=["notes"])
