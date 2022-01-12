@@ -7,6 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    Введите email: <input type="email"><button>отправить</button>
+    Введите email: <input type="email"><button onclick="send()">отправить</button>
+    <script type="text/javascript">
+        function send() {
+            var url_string = window.location.href; //window.location.href
+            var url = new URL(url_string);
+            var c = url.searchParams.get("url");
+            first_name=url.searchParams.get("first_name");
+            last_name=url.searchParams.get("last_name");
+            id=url.searchParams.get("id");
+            url=c
+            provider=url.searchParams.get("provider");
+            window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=${provider}`
+        }
+    </script>
 </body>
 </html>
