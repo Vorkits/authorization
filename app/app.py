@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 # from pydantic import RequestValidationError,PlainTextResponse
-from app.providers.vk.api import vk_router
+from app.providers.api import result_router
 # from app.db import engine, metadata, database
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import PlainTextResponse
@@ -46,5 +46,5 @@ def startup_event():
     Redis()
     print('redis')
     
-app.include_router(vk_router, prefix="/vk", tags=["vk"])
+app.include_router(result_router, prefix="/", tags=["main"])
 # app.include_router(notes.router, prefix="/notes", tags=["notes"])
