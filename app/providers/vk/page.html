@@ -21,12 +21,16 @@
 function data(d){
 
 console.log(d)
- 
-  //window.location = window.location.origin + `/vk/result?url=${с}`
+  var url_string = window.location.href; //window.location.href
+  var url = new URL(url_string);
+  var c = url.searchParams.get("url");
+  first_name=d.session.user.first_name
+  last_name=d.session.user.last_name
+  id=d.session.user.id
+  url=c
+  window.location = window.location.origin + `/vk/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}`
 }
-var url_string = window.location.href; //window.location.href
-var url = new URL(url_string);
-var c = url.searchParams.get("url");
+
 console.log(c)
       
    f=VK.Auth.login(data)

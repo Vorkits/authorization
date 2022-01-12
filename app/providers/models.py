@@ -10,7 +10,6 @@ class AuthModel(BaseModel):
         return url
 
 class VkAuthModel(BaseModel):
-    name:str
     id:str
     first_name:str
     last_name:str
