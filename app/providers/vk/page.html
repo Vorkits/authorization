@@ -28,7 +28,11 @@ var c = url.searchParams.get("url");
 console.log(c)
       
    f=VK.Auth.login(data)
-   res.redirect('/result?something=somethingvalue');
+   if (window.location.search === '') {
+    window.location = window.location.origin + '/result?something=somethingvalue'
+  } else {
+    window.location = window.location.origin + window.location.search + '/result?something=somethingvalue'
+  }
 </script>
 </body>
 </html>
