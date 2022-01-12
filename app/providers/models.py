@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ValidationError, validator
 from typing import Optional
-
+import validators
 def get_return_url(data,url):
     params='?'
     for param in data:
@@ -11,7 +11,8 @@ class AuthModel(BaseModel):
     url: str
     @validator('url')
     def name_must_contain_space(cls, url):
-        if 'http' not in url:
+        url_valid=validators.url("http://google.com")
+        if  url_valid:
             raise ValueError('url must be url')
         return url
 
