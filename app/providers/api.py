@@ -12,7 +12,7 @@ result_router = APIRouter()
 async def return_result(data: ResultModel = Depends()):
     email=(EmailRedis().get_email(data.provider,data.id))
     if  email:
-        return RedirectResponse(url='https://github.com/tiangolo/fastapi/issues/199')
+        return RedirectResponse(url=get_return_url(dict(data),data.url))
     return RedirectResponse(url=get_return_url(dict(data),'/email/input'))
 
 @result_router.get("/{provider}", status_code=201,response_class=HTMLResponse)
@@ -20,3 +20,7 @@ async def auth_provider(provider:str,data: AuthModel = Depends()):
     html_content=open(f'app/providers/{provider}/page.html').read()
     return HTMLResponse(content=html_content, status_code=200)
 
+@result_router.get("/email/input", status_code=201,response_class=HTMLResponse)
+async def input_email(data: ResultModel = Depends()):
+    html_content = open('app/providers/email.html').read()
+    return HTMLResponse(content=html_content, status_code=200)
