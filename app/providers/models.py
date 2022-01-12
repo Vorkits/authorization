@@ -2,7 +2,10 @@ from pydantic import BaseModel, ValidationError, validator
 from typing import Optional
 
 def get_return_url(data,url):
-    url=url
+    params='?'
+    for param in data:
+        params+=f'{data[param]}&'
+    return url+params
 
 class AuthModel(BaseModel):
     url: str

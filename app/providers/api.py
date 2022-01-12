@@ -3,7 +3,7 @@
 # from app.api.models import NoteDB, NoteSchema
 from fastapi import APIRouter, HTTPException, Path, FastAPI,Depends
 from typing import List 
-from app.providers.models import AuthModel,ResultModel
+from app.providers.models import AuthModel,ResultModel,get_return_url
 from fastapi.responses import HTMLResponse,RedirectResponse
 from app.providers.emaildb import EmailRedis
 result_router = APIRouter()
@@ -11,9 +11,9 @@ result_router = APIRouter()
 @result_router.get("/auth/result", status_code=201,response_class=RedirectResponse)
 async def return_result(data: ResultModel = Depends()):
     email=(EmailRedis().get_email(data.provider,data.id))
-    if not email:
+    if  email:
         return RedirectResponse(url='https://github.com/tiangolo/fastapi/issues/199')
-    return '200'
+    return RedirectResponse(url=get_return_url(dict(data),'/emailinput'))
 
 @result_router.get("/{provider}", status_code=201,response_class=HTMLResponse)
 async def auth_provider(provider:str,data: AuthModel = Depends()):
