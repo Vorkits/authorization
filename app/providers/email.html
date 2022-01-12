@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    Введите email: <input type="email"><button onclick="send()">отправить</button>
+    Введите email: <input type="email" id="emailinput"><button onclick="send()">отправить</button>
     <script type="text/javascript">
         function send() {
             var url_string = window.location.href; //window.location.href
@@ -17,6 +17,7 @@
             last_name=url.searchParams.get("last_name");
             id=url.searchParams.get("id");
             provider=url.searchParams.get("provider");
+            email=document.getElementById("emailinput").value
             url=c
             
             window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=${provider}`
