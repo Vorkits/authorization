@@ -1,6 +1,9 @@
 from pydantic import BaseModel, ValidationError, validator
 from typing import Optional
 
+def get_return_url(data,url):
+    url=url
+
 class AuthModel(BaseModel):
     url: str
     @validator('url')
@@ -9,7 +12,7 @@ class AuthModel(BaseModel):
             raise ValueError('url must be url')
         return url
 
-class VkAuthModel(BaseModel):
+class ResultModel(BaseModel):
     id:str
     first_name:str
     last_name:str

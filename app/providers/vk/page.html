@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    ты лох
+    VK
     <script
     type="text/javascript"
     src="https://vk.com/js/api/openapi.js?169"
@@ -28,7 +28,7 @@ console.log(d)
   last_name=d.session.user.last_name
   id=d.session.user.id
   url=c
-  window.location = window.location.origin + `/vk/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}`
+  window.location = window.location.origin + `/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=${vk}`
   }
 
 //console.log(c)
