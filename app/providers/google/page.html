@@ -6,6 +6,14 @@
   <head>
     <script src="https://apis.google.com/js/api.js"></script>    
     <script type="text/javascript">
+        const getMethods = (obj) => {
+            let properties = new Set()
+            let currentObj = obj
+            do {
+              Object.getOwnPropertyNames(currentObj).map(item => properties.add(item))
+            } while ((currentObj = Object.getPrototypeOf(currentObj)))
+            return [...properties.keys()].filter(item => typeof obj[item] === 'function')
+          }
         function onSignIn(googleUser) {
             console.log( "signedin");
             // Useful data for your client-side scripts:
@@ -22,7 +30,7 @@
                  console.log(auth2.BasicProfile)
                   f=auth2.signIn();
                   console.log(f)
-                  console.log(f.currentUser.get())
+                  console.log(getMethods(f))
                 
             });
         });
