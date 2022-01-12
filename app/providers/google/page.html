@@ -20,9 +20,9 @@
             }).then(function(auth2) {
                 console.log( "signed in: " + auth2.isSignedIn.get() ); 
                  console.log(auth2.BasicProfile)
-                auth2.isSignedIn.listen(onSignIn);
                   f=auth2.signIn();
                   console.log(f)
+                  console.log(f.currentUser.get())
                 
             });
         });
