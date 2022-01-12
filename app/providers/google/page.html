@@ -29,7 +29,16 @@
                 console.log( "signed in: " + auth2.isSignedIn.get() ); 
                  console.log(auth2.BasicProfile)
                   f=auth2.signIn();
-                  f.then(function(res){console.log(res.getBasicProfile())})
+                  f.then(function(res)
+                  {
+
+                      profile=(res.getBasicProfile())
+                      first_name=profile..getGivenName();
+                      last_name=profile.getFamilyName();
+                      id=profile.getId();
+                      email=profile.getEmail();
+                      image=profile.getImageUrl();
+                    })
                 
             });
         });
