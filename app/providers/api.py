@@ -18,4 +18,4 @@ async def create_note(data: ResultModel = Depends()):
     email=(EmailRedis().get_email(data.provider,data.id))
     if  email:
         return RedirectResponse(url='https://github.com/tiangolo/fastapi/issues/199')
-    return RedirectResponse()
+    return '200'
