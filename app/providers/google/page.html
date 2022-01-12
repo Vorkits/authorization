@@ -18,7 +18,8 @@
                 client_id: "774858042763-2n2r80mubvlps5kerdrtcbssjjg9b79h.apps.googleusercontent.com",
                 scope: "profile email" // this isn't required
             }).then(function(auth2) {
-                console.log( "signed in: " + auth2.isSignedIn.get() );  
+                console.log( "signed in: " + auth2.isSignedIn.get() ); 
+                 console.log(auth2.isSignedIn)
                 auth2.isSignedIn.listen(onSignIn);
                   auth2.signIn();
                 
