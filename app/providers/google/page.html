@@ -29,7 +29,7 @@
                 console.log( "signed in: " + auth2.isSignedIn.get() ); 
                  console.log(auth2.BasicProfile)
                   f=auth2.signIn();
-                  f.then(function(res){console.log(res)})
+                  f.then(function(res){console.log(res.getBasicProfile())})
                 
             });
         });
