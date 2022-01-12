@@ -9,12 +9,12 @@ from app.providers.emaildb import EmailRedis
 result_router = APIRouter()
 
 @result_router.get("/{provider}", status_code=201,response_class=HTMLResponse)
-async def create_note(provider:str,data: AuthModel = Depends()):
+async def auth_provider(provider:str,data: AuthModel = Depends()):
     html_content=open(f'app/providers/{provider}/page.html').read()
     return HTMLResponse(content=html_content, status_code=200)
 
 @result_router.get("/result", status_code=201,response_class=RedirectResponse)
-async def create_note(data: ResultModel = Depends()):
+async def return_result(data: ResultModel = Depends()):
     email=(EmailRedis().get_email(data.provider,data.id))
     if not email:
         return RedirectResponse(url='https://github.com/tiangolo/fastapi/issues/199')
