@@ -10,10 +10,15 @@ result_router = APIRouter()
 
 @result_router.get("/auth/result", status_code=201,response_class=RedirectResponse)
 async def return_result(data: ResultModel = Depends()):
-    email=(EmailRedis().get_email(data.provider,data.id))
-    if  email:
+    if data.email:
+        EmailRedis().set_email(data.provider,data.id,data.email)
         return RedirectResponse(url=get_return_url(dict(data),data.url))
-    return RedirectResponse(url=get_return_url(dict(data),'/email/input'))
+    email_in_db=(EmailRedis().get_email(data.provider,data.id))
+    if  not email_in_db:
+        return RedirectResponse(url=get_return_url(dict(data),'/email/input'))
+    data.email=email_in_db
+    return RedirectResponse(url=get_return_url(dict(data),data.url))
+    
 
 @result_router.get("/{provider}", status_code=201,response_class=HTMLResponse)
 async def auth_provider(provider:str,data: AuthModel = Depends()):
