@@ -16,8 +16,9 @@
             first_name=url.searchParams.get("first_name");
             last_name=url.searchParams.get("last_name");
             id=url.searchParams.get("id");
-            url=c
             provider=url.searchParams.get("provider");
+            url=c
+            
             window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=${provider}`
         }
     </script>
