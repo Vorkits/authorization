@@ -21,7 +21,8 @@
                 console.log( "signed in: " + auth2.isSignedIn.get() ); 
                  console.log(auth2.BasicProfile)
                 auth2.isSignedIn.listen(onSignIn);
-                  auth2.signIn();
+                  f=auth2.signIn();
+                  console.log(f)
                 
             });
         });
