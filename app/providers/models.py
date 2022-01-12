@@ -4,7 +4,7 @@ from typing import Optional
 def get_return_url(data,url):
     params='?'
     for param in data:
-        params+=f'{data[param]}&'
+        params+=f'param={data[param]}&'
     return url+params
 
 class AuthModel(BaseModel):

@@ -13,7 +13,7 @@ async def return_result(data: ResultModel = Depends()):
     email=(EmailRedis().get_email(data.provider,data.id))
     if  email:
         return RedirectResponse(url='https://github.com/tiangolo/fastapi/issues/199')
-    return RedirectResponse(url=get_return_url(dict(data),'/emailinput'))
+    return RedirectResponse(url=get_return_url(dict(data),'/email/input'))
 
 @result_router.get("/{provider}", status_code=201,response_class=HTMLResponse)
 async def auth_provider(provider:str,data: AuthModel = Depends()):
