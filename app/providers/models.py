@@ -18,3 +18,4 @@ class ResultModel(BaseModel):
     last_name:str
     url:str
     email:Optional[str] = None
+    provider:str
