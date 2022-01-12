@@ -11,8 +11,8 @@ class AuthModel(BaseModel):
     url: str
     @validator('url')
     def name_must_contain_space(cls, url):
-        url_valid=validators.url("http://google.com")
-        if  url_valid:
+        url_valid=validators.url(url)
+        if  not url_valid:
             raise ValueError('url must be url')
         return url
 
