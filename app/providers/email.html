@@ -9,6 +9,12 @@
 <body>
     Введите email: <input type="email" id="emailinput"><button onclick="send()">отправить</button>
     <script type="text/javascript">
+        const validateEmail = (email) => {
+            return String(email)
+              .toLowerCase()
+              .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              );}
         function send() {
             var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
@@ -19,7 +25,9 @@
             provider=url.searchParams.get("provider");
             email=document.getElementById("emailinput").value
             url=c
-            
+            if (!validateEmail(email)){
+                alert('email problem')
+            }
             window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=${provider}&email=${email}`
         }
     </script>
