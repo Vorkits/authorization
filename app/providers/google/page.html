@@ -20,7 +20,6 @@
             }).then(function(auth2) {
                 console.log( "signed in: " + auth2.isSignedIn.get() );  
                 auth2.isSignedIn.listen(onSignIn);
-                var button = document.querySelector('#signInButton');
                   auth2.signIn();
                 
             });
