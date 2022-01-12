@@ -7,7 +7,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel, ValidationError
 # metadata.create_all(engine)
-
+from app.db import Redis
 app = FastAPI()
 
 origins = [
@@ -41,6 +41,10 @@ async def validation_exception_handler(request, exc):
 @app.exception_handler(ValueError)
 async def value_error_exception_handler(request, exc):
     return PlainTextResponse(str(exc), status_code=422)
-
+@app.on_event('startup')
+def startup_event():
+    Redis()
+    print('redis')
+    
 app.include_router(vk_router, prefix="/vk", tags=["vk"])
 # app.include_router(notes.router, prefix="/notes", tags=["notes"])
