@@ -1,43 +1,33 @@
+
+
+
+
 <html lang="en">
   <head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="774858042763-2n2r80mubvlps5kerdrtcbssjjg9b79h.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/api.js"></script>    
+    <script type="text/javascript">
+        function onSignIn(googleUser) {
+            console.log( "signedin");
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("Name: " + profile.getName());
+        };
+
+        gapi.load('auth2', function() {
+            gapi.auth2.init({
+                client_id: "774858042763-2n2r80mubvlps5kerdrtcbssjjg9b79h.apps.googleusercontent.com",
+                scope: "profile email" // this isn't required
+            }).then(function(auth2) {
+                console.log( "signed in: " + auth2.isSignedIn.get() );  
+                auth2.isSignedIn.listen(onSignIn);
+                var button = document.querySelector('#signInButton');
+                  auth2.signIn();
+                
+            });
+        });
+    </script>
   </head>
   <body>
-  
-    <script type="text/javascript">
-        function oauthSignIn() {
-            // Google's OAuth 2.0 endpoint for requesting an access token
-            var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
-          
-            // Create <form> element to submit parameters to OAuth 2.0 endpoint.
-            var form = document.createElement('form');
-            form.setAttribute('method', 'GET'); // Send as a GET request.
-            form.setAttribute('action', oauth2Endpoint);
-          
-            // Parameters to pass to OAuth 2.0 endpoint.
-            var params = {'client_id': '774858042763-2n2r80mubvlps5kerdrtcbssjjg9b79h.apps.googleusercontent.com',
-                          'redirect_uri': 'http://ralae.com/result',
-                          'response_type': 'token',
-                          'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
-                          'include_granted_scopes': 'true',
-                          'state': 'pass-through value'};
-          
-            // Add form parameters as hidden input values.
-            for (var p in params) {
-              var input = document.createElement('input');
-              input.setAttribute('type', 'hidden');
-              input.setAttribute('name', p);
-              input.setAttribute('value', params[p]);
-              form.appendChild(input);
-            }
-          
-            // Add form to page and submit it to open the OAuth 2.0 endpoint.
-            document.body.appendChild(form);
-            form.submit();
-          }
-          oauthSignIn()
-    </script>
+    <div id="signInButton"><img src="IMAGE_FILE" /></div>
   </body>
 </html>
