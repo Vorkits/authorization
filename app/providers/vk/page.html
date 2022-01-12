@@ -21,6 +21,8 @@
 function data(d){
 
 console.log(d)
+ 
+  //window.location = window.location.origin + `/vk/result?url=${с}`
 }
 var url_string = window.location.href; //window.location.href
 var url = new URL(url_string);
@@ -28,7 +30,7 @@ var c = url.searchParams.get("url");
 console.log(c)
       
    f=VK.Auth.login(data)
-    window.location = window.location.origin + '/vk/result?something=somethingvalue'
+    
 
 </script>
 </body>
