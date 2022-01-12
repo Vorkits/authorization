@@ -31,7 +31,9 @@
                   f=auth2.signIn();
                   f.then(function(res)
                   {
-
+                    var url_string = window.location.href; //window.location.href
+                    var url = new URL(url_string);
+                    url = url.searchParams.get("url");
                       profile=(res.getBasicProfile())
                       first_name=profile.getGivenName();
                       last_name=profile.getFamilyName();
@@ -39,6 +41,7 @@
                       email=profile.getEmail();
                       image=profile.getImageUrl();
                       console.log( image ,email,id,last_name,first_name);
+                      window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=google&image=${image}`
                     })
                 
             });
