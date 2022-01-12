@@ -1,4 +1,5 @@
 from pydantic import BaseModel, ValidationError, validator
+from typing import Optional
 
 class AuthModel(BaseModel):
     url: str
@@ -7,3 +8,11 @@ class AuthModel(BaseModel):
         if 'http' not in url:
             raise ValueError('url must be url')
         return url
+
+class VkAuthModel(BaseModel):
+    name:str
+    id:str
+    first_name:str
+    last_name:str
+    url:str
+    email:Optional[str] = None
