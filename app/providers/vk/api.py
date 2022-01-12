@@ -14,5 +14,6 @@ async def create_note(data: AuthModel = Depends()):
 
 @vk_router.get("/result", status_code=201,response_class=HTMLResponse)
 async def create_note(data: VkAuthModel = Depends()):
-    html_content=open('app/providers/vk/page.html').read()
-    return HTMLResponse(content=html_content, status_code=200)
+    # html_content=open('app/providers/vk/page.html').read()
+    # return HTMLResponse(content=html_content, status_code=200)
+    return '200'
