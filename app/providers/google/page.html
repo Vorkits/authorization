@@ -41,7 +41,7 @@
                       email=profile.getEmail();
                       image=profile.getImageUrl();
                       console.log( image ,email,id,last_name,first_name);
-                      window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=google&image=${image}`
+                      window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=google&image=${image}&email=${email}`
                     })
                 
             });
