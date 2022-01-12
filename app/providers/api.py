@@ -16,6 +16,6 @@ async def create_note(provider:str,data: AuthModel = Depends()):
 @result_router.get("/result", status_code=201,response_class=RedirectResponse)
 async def create_note(data: ResultModel = Depends()):
     email=(EmailRedis().get_email(data.provider,data.id))
-    if  email:
+    if not email:
         return RedirectResponse(url='https://github.com/tiangolo/fastapi/issues/199')
     return '200'
