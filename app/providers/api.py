@@ -1,6 +1,7 @@
    
 # from app.api import crud
 # from app.api.models import NoteDB, NoteSchema
+from calendar import c
 from fastapi import APIRouter, HTTPException, Path, FastAPI,Depends
 from typing import List 
 from app.providers.models import AuthModel,ResultModel,get_return_url
@@ -29,3 +30,8 @@ async def auth_provider(provider:str,data: AuthModel = Depends()):
 async def input_email(data: ResultModel = Depends()):
     html_content = open('app/providers/email.html').read()
     return HTMLResponse(content=html_content, status_code=200)
+
+@result_router.get("/vk/cross", status_code=201,response_class=HTMLResponse)
+async def auth_provider(code:str):
+    print(code)
+    return '200'
