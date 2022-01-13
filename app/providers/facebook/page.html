@@ -17,7 +17,12 @@
           });
           
           FB.login(function(response) {
-            console.log(response)
+              
+            FB.api('/me', function(response) {
+                console.log(response)
+                console.log('Successful login for: ' + response.name);
+                
+              });
           }, {scope: 'public_profile,email'});}
        
       </script>
