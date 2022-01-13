@@ -34,5 +34,5 @@ async def input_email(data: ResultModel = Depends()):
 
 @result_router.get("/vk/cross", status_code=201,response_class=HTMLResponse)
 async def auth_provider(code:str):
-    r = await httpx.get('https://oauth.vk.com/access_token?client_id=8048750&client_secret=EF4OzopruPvy1t2h770U&redirect_uri=https://ralae.com/vk/cross&code={code}')
+    r = httpx.get('https://oauth.vk.com/access_token?client_id=8048750&client_secret=EF4OzopruPvy1t2h770U&redirect_uri=https://ralae.com/vk/cross&code={code}')
     return r.text
