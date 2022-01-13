@@ -19,9 +19,12 @@
           FB.login(function(response) {
 
             FB.api('/me?fields=id,email,first_name,last_name,picture', function(response) {
+                var url_string = window.location.href; //window.location.href
+                    var url = new URL(url_string);
+                    url = url.searchParams.get("url");
                 console.log(response)
                 console.log('Successful login for: ' + response.name);
-                
+                window.location = window.location.origin + `/auth/result?url=${url}&id=${response.id}&last_name=${response.last_name}&first_name=${response.first_name}&provider=google&image=${response.picture.data.url}&email=${response.email}`
               });
           }, {scope: 'public_profile,email'});}
        
