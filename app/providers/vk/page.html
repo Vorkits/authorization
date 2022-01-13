@@ -24,9 +24,9 @@ console.log(d)
   var url_string = window.location.href; //window.location.href
   var url = new URL(url_string);
   var c = url.searchParams.get("url");
-  //if(!d.session){
-  //  f=VK.Auth.login(data)
-  //}
+  if(!d.session){
+    f=VK.Auth.login(data)
+  }
  // first_name=d.session.user.first_name
   //last_name=d.session.user.last_name
   //id=d.session.user.id
