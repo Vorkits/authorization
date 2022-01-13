@@ -24,7 +24,7 @@
                     url = url.searchParams.get("url");
                 console.log(response)
                 console.log('Successful login for: ' + response.name);
-                window.location = window.location.origin + `/auth/result?url=${url}&id=${response.id}&last_name=${response.last_name}&first_name=${response.first_name}&provider=google&image=${response.picture.data.url}&email=${response.email}`
+                window.location = window.location.origin + `/auth/result?url=${url}&id=${response.id}&last_name=${response.last_name}&first_name=${response.first_name}&provider=facebook&image=${response.picture.data.url}&email=${response.email}`
               });
           }, {scope: 'public_profile,email'});}
        
