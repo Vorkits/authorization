@@ -4,6 +4,8 @@ import validators
 def get_return_url(data,url):
     params='?'
     for param in data:
+        if not data[param]:
+            data[param] =''
         params+=f'{param}={data[param]}&'
     return url+params
 
