@@ -15,10 +15,10 @@
             xfbml            : true,
             version          : 'v12.0'
           });
-          FB.getLoginStatus(function(response) {
-           // statusChangeCallback(response);
-            console.log(response);
-        });
+          
+        FB.login(function(response){
+            console.log(response)
+          });
         };
        
       </script>
