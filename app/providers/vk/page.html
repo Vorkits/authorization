@@ -36,7 +36,9 @@ console.log(d)
 
 //console.log(c)
   //window.location = url_string
-   await VK.Auth.login(data)
+   VK.Auth.login(data).then(function d(data) {
+     console.log(data)
+   })
    console.log(f,'f')
     
 
