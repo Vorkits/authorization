@@ -40,4 +40,4 @@ async def auth_provider(code:str,state:str):
         "url":state,"first_name":r['response'][0]['first_name'],
         "last_name":r['response'][0]['last_name'],"id":r['response'][0]['id'],
         "provider":"vk"
-        },'/email/input'))
+        },'/auth/result'))
