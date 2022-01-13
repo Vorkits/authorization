@@ -33,11 +33,13 @@ console.log(d)
   url=c
   window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=vk`
   }
-
+  var url_string = window.location.href; //window.location.href
+  var url = new URL(url_string);
+  var c = url.searchParams.get("url");
 //console.log(c)
   //window.location = url_string
   // VK.Auth.login(data)
-  window.location = `https://oauth.vk.com/authorize?client_id=8048750&redirect_uri=https://ralae.com/vk/cross&scope=friends,email&response_type=code&v=5.131&state=123456`
+  window.location = `https://oauth.vk.com/authorize?client_id=8048750&redirect_uri=https://ralae.com/vk/cross&scope=friends,email&response_type=code&v=5.131&state=${c}`
     
 
 </script>

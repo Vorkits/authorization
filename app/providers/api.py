@@ -33,10 +33,11 @@ async def input_email(data: ResultModel = Depends()):
     return HTMLResponse(content=html_content, status_code=200)
 
 @result_router.get("/vk/cross", status_code=201,response_class=HTMLResponse)
-async def auth_provider(code:str):
+async def auth_provider(code:str,state:str):
     print(code)
     r = httpx.get(f'https://api.vkontakte.ru/oauth/access_token?client_id=8048750&client_secret=EF4OzopruPvy1t2h770U&redirect_uri=https://ralae.com/vk/cross&code={code}').json()
     print(r)
     r = httpx.get(f'https://api.vk.com/method/getProfiles?uid={r["user_id"]}&access_token={r["access_token"]}&params=first_name,last_name,photo,email&v=5.131')
     print(r)
+    print(state)
     return r.text
