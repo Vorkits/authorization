@@ -1,6 +1,8 @@
 from pydantic import BaseModel, ValidationError, validator
 from typing import Optional
 import validators
+
+
 def get_return_url(data,url):
     params='?'
     for param in data:
