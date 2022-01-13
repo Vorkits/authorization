@@ -27,11 +27,11 @@ console.log(d)
   if(!d.session){
     VK.Auth.login(data)
   }
- // first_name=d.session.user.first_name
-  //last_name=d.session.user.last_name
-  //id=d.session.user.id
-  //url=c
-  //window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=vk`
+  first_name=d.session.user.first_name
+ last_name=d.session.user.last_name
+  id=d.session.user.id
+  url=c
+  window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=vk`
   }
 
 //console.log(c)
