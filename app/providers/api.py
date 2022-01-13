@@ -38,5 +38,6 @@ async def auth_provider(code:str,state:str):
     r = httpx.get(f'https://api.vk.com/method/getProfiles?uid={r["user_id"]}&access_token={r["access_token"]}&params=first_name,last_name,photo,email&v=5.131').json()
     return RedirectResponse(url=get_return_url({
         "url":state,"first_name":r['response'][0]['first_name'],
-        "last_name":r['response'][0]['last_name'],"id":r['response'][0]['id']
+        "last_name":r['response'][0]['last_name'],"id":r['response'][0]['id'],
+        "provider":"vk"
         },'/email/input'))
