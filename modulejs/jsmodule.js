@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log('start')
     vk=document.getElementById('vkauth')
     gmail=document.getElementById('gmailauth')
+    facebook=document.getElementById('facebookauth')
     url=document.getElementById('authwidget').getAttribute('data-url-auth');
     console.log(url)
     vk.addEventListener('click', function(){
@@ -13,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function(){
      });
      gmail.addEventListener('click', function(){
         redirect_to_auth('google',url);
+     });
+     facebook.addEventListener('click', function(){
+        redirect_to_auth('facebook',url);
      });
      
 });
