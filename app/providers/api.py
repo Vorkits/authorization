@@ -37,5 +37,5 @@ async def auth_provider(code:str):
     print(code)
     r = httpx.get(f'https://api.vkontakte.ru/oauth/access_token?client_id=8048750&client_secret=EF4OzopruPvy1t2h770U&redirect_uri=https://ralae.com/vk/cross&code={code}').json()
     print(r)
-    r = httpx.get(f'https://api.vkontakte.ru/method/getProfiles?uid={r["user_id"]}&access_token={r["access_token"]}&params=first_name,last_name,photo')
+    r = httpx.get(f'https://pi.vk.com/method/getProfiles?uid={r["user_id"]}&access_token={r["access_token"]}&params=first_name,last_name,photo')
     return r.text
