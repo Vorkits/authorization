@@ -24,16 +24,20 @@ console.log(d)
   var url_string = window.location.href; //window.location.href
   var url = new URL(url_string);
   var c = url.searchParams.get("url");
-  first_name=d.session.user.first_name
-  last_name=d.session.user.last_name
-  id=d.session.user.id
-  url=c
-  window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=vk`
+  //if(!d.session){
+  //  f=VK.Auth.login(data)
+  //}
+ // first_name=d.session.user.first_name
+  //last_name=d.session.user.last_name
+  //id=d.session.user.id
+  //url=c
+  //window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=vk`
   }
 
 //console.log(c)
-      
+  //window.location = url_string
    f=VK.Auth.login(data)
+   console.log(f)
     
 
 </script>
