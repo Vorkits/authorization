@@ -25,7 +25,7 @@ console.log(d)
   var url = new URL(url_string);
   var c = url.searchParams.get("url");
   if(!d.session){
-    f=VK.Auth.login(data)
+    VK.Auth.login(data)
   }
  // first_name=d.session.user.first_name
   //last_name=d.session.user.last_name
@@ -37,7 +37,7 @@ console.log(d)
 //console.log(c)
   //window.location = url_string
    f=VK.Auth.login(data)
-   console.log(f)
+   console.log(f,'f')
     
 
 </script>
