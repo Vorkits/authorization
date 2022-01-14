@@ -62,7 +62,7 @@ async def auth_provider(code:str,state:str):
     r = httpx.get(f'https://graph.facebook.com/{r["data"]["user_id"]}?fields=id,email,first_name,last_name,picture&access_token={token}').json()
     print(r)
     return RedirectResponse(url=get_return_url({
-        "url":state,"first_name":r['given_name'],
-        "last_name":r['family_name'],"id":r['id'],"email":r['email'],
-        "provider":"google","image":r['picture']
+        "url":state,"first_name":r['first_name'],
+        "last_name":r['first_name'],"id":r['id'],"email":r['email'],
+        "provider":"facebook","image":r['picture']['data']['url']
         },'/auth/result'))
