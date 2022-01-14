@@ -52,3 +52,15 @@ async def auth_provider(code:str,state:str):
         "last_name":r['family_name'],"id":r['id'],"email":r['email'],
         "provider":"google","image":r['picture']
         },'/auth/result'))
+    
+@result_router.get("/facebook/cross", status_code=201,response_class=RedirectResponse)
+async def auth_provider(code:str,state:str):
+    print(code,state)
+    r = httpx.post(f'https://oauth2.googleapis.com/token?client_id=885542435374475&client_secret=29b253024d72cc0b7b0faaada2932322&redirect_uri=https://ralae.com/facebook/cross&code={code}').json()
+  
+    r = httpx.get(f'https://www.googleapis.com/oauth2/v2/userinfo?access_token={r["access_token"]}').json()
+    return RedirectResponse(url=get_return_url({
+        "url":state,"first_name":r['given_name'],
+        "last_name":r['family_name'],"id":r['id'],"email":r['email'],
+        "provider":"google","image":r['picture']
+        },'/auth/result'))
