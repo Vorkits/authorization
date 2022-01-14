@@ -49,7 +49,7 @@ async def auth_provider(code:str,state:str):
     except Exception as e:
         print(e)
     print(r)
-    r = httpx.get(f'https://www.googleapis.com/auth/userinfo.profile?access_token={r["access_token"]}').json()
+    r = httpx.get(f'https://www.googleapis.com/auth/userinfo?access_token={r["access_token"]}').json()
     print(r)
     return '200'
     # return RedirectResponse(url=get_return_url({
