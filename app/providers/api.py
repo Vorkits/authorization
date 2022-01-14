@@ -48,7 +48,7 @@ async def auth_provider(code:str,state:str):
     print(r)
     r = httpx.get(f'https://www.googleapis.com/auth/userinfo.profile?access_token={r["access_token"]}').json()
     print(r)
-    return str(r)
+    return '200'
     # return RedirectResponse(url=get_return_url({
     #     "url":state,"first_name":r['response'][0]['first_name'],
     #     "last_name":r['response'][0]['last_name'],"id":r['response'][0]['id'],
