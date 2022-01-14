@@ -44,7 +44,7 @@ async def auth_provider(code:str,state:str):
     
 @result_router.get("/google/cross", status_code=201,response_class=RedirectResponse)
 async def auth_provider(code:str,state:str):
-    r = httpx.get(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=EF4OzopruPvy1t2h770U&redirect_uri=https://ralae.com/google/cross&code={code}').json()
+    r = httpx.get(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}').json()
     r = httpx.get(f'https://api.vk.com/method/getProfiles?uid={r["user_id"]}&access_token={r["access_token"]}&params=first_name,last_name,photo,email&v=5.131').json()
     return RedirectResponse(url=get_return_url({
         "url":state,"first_name":r['response'][0]['first_name'],
