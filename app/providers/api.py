@@ -44,16 +44,11 @@ async def auth_provider(code:str,state:str):
 @result_router.get("/google/cross", status_code=201,response_class=RedirectResponse)
 async def auth_provider(code:str,state:str):
     print(code,state)
-    try:
-        r = httpx.post(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}&grant_type=authorization_code').json()
-    except Exception as e:
-        print(e)
-    print(r)
+    r = httpx.post(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}&grant_type=authorization_code').json()
+  
     r = httpx.get(f'https://www.googleapis.com/oauth2/v2/userinfo?access_token={r["access_token"]}').json()
-    print(r)
-    return '200'
-    # return RedirectResponse(url=get_return_url({
-    #     "url":state,"first_name":r['response'][0]['first_name'],
-    #     "last_name":r['response'][0]['last_name'],"id":r['response'][0]['id'],
-    #     "provider":"vk"
-    #     },'/auth/result'))
+    return RedirectResponse(url=get_return_url({
+        "url":state,"first_name":r['given_name'],
+        "last_name":r['family_name'],"id":r['id'],"email":r['email'],
+        "provider":"google","image":r['picture']
+        },'/auth/result'))
