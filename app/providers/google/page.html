@@ -6,46 +6,7 @@
   <head>
     <script src="https://apis.google.com/js/api.js"></script>    
     <script type="text/javascript">
-        const getMethods = (obj) => {
-            let properties = new Set()
-            let currentObj = obj
-            do {
-              Object.getOwnPropertyNames(currentObj).map(item => properties.add(item))
-            } while ((currentObj = Object.getPrototypeOf(currentObj)))
-            return [...properties.keys()].filter(item => typeof obj[item] === 'function')
-          }
-        function onSignIn(googleUser) {
-            console.log( "signedin");
-            // Useful data for your client-side scripts:
-            var profile = googleUser.getBasicProfile();
-            console.log("Name: " + profile.getName());
-        };
-
-        gapi.load('auth2', function() {
-            gapi.auth2.init({
-                client_id: "774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com",
-                scope: "profile email" // this isn't required
-            }).then(function(auth2) {
-                console.log( "signed in: " + auth2.isSignedIn.get() ); 
-                 console.log(auth2.BasicProfile)
-                  f=auth2.signIn();
-                  f.then(function(res)
-                  {
-                    var url_string = window.location.href; //window.location.href
-                    var url = new URL(url_string);
-                    url = url.searchParams.get("url");
-                      profile=(res.getBasicProfile())
-                      first_name=profile.getGivenName();
-                      last_name=profile.getFamilyName();
-                      id=profile.getId();
-                      email=profile.getEmail();
-                      image=profile.getImageUrl();
-                      console.log( image ,email,id,last_name,first_name);
-                      window.location = window.location.origin + `/auth/result?url=${url}&id=${id}&last_name=${last_name}&first_name=${first_name}&provider=google&image=${image}&email=${email}`
-                    })
-                
-            });
-        });
+      window.location = `https://accounts.google.com/o/oauth2/v2/auth?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&redirect_uri=https://ralae.com/google/cross&scope=https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/userinfo.email&response_type=code&state=${c}`
     </script>
   </head>
   <body>
