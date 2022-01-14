@@ -45,7 +45,7 @@ async def auth_provider(code:str,state:str):
 async def auth_provider(code:str,state:str):
     print(code,state)
     try:
-        r = httpx.get(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}').json()
+        r = httpx.get(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}&grant_type=authorization_code').json()
     except Exception as e:
         print(e)
     print(r)
