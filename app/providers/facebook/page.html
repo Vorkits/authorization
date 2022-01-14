@@ -8,28 +8,11 @@
 </head>
 <body>
     <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId            : '885542435374475',
-            autoLogAppEvents : true,
-            xfbml            : true,
-            version          : 'v12.0'
-          });
-          
-          FB.login(function(response) {
-
-            FB.api('/me?fields=id,email,first_name,last_name,picture', function(response) {
-                var url_string = window.location.href; //window.location.href
-                    var url = new URL(url_string);
-                    url = url.searchParams.get("url");
-                console.log(response)
-                console.log('Successful login for: ' + response.name);
-                window.location = window.location.origin + `/auth/result?url=${url}&id=${response.id}&last_name=${response.last_name}&first_name=${response.first_name}&provider=facebook&image=${response.picture.data.url}&email=${response.email}`
-              });
-          }, {scope: 'public_profile,email'});}
-       
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var c = url.searchParams.get("url");
+        window.location = `https://www.facebook.com/v12.0/dialog/oauth?client_id=885542435374475&redirect_uri=https://ralae.com/facebook/cross&state=${c}`
       </script>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
           
 </body>
 </html>
