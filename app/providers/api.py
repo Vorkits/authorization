@@ -58,6 +58,7 @@ async def auth_provider(code:str,state:str):
     print(code,state)
     r = httpx.post(f'https://graph.facebook.com/v12.0/oauth/access_token?client_id=885542435374475&client_secret=29b253024d72cc0b7b0faaada2932322&redirect_uri=https://ralae.com/facebook/cross&code={code}').json()
     r = httpx.get(f'https://graph.facebook.com/me?fields=id,email,first_name,last_name,picture?access_token={r["access_token"]}').json()
+    print(r)
     return RedirectResponse(url=get_return_url({
         "url":state,"first_name":r['given_name'],
         "last_name":r['family_name'],"id":r['id'],"email":r['email'],
