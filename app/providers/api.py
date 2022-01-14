@@ -2,6 +2,7 @@
 # from app.api import crud
 # from app.api.models import NoteDB, NoteSchema
 from calendar import c
+from tkinter import E
 from fastapi import APIRouter, HTTPException, Path, FastAPI,Depends
 from typing import List 
 from app.providers.models import AuthModel,ResultModel,get_return_url
@@ -45,7 +46,10 @@ async def auth_provider(code:str,state:str):
 @result_router.get("/google/cross", status_code=201,response_class=RedirectResponse)
 async def auth_provider(code:str,state:str):
     print(code,state)
-    r = httpx.get(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}').json()
+    try:
+        r = httpx.get(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}').json()
+    except Exception as e:
+        print(e)
     print(r)
     r = httpx.get(f'https://www.googleapis.com/auth/userinfo.profile?access_token={r["access_token"]}').json()
     print(r)
