@@ -45,9 +45,10 @@ async def auth_provider(code:str,state:str):
 @result_router.get("/google/cross", status_code=201,response_class=RedirectResponse)
 async def auth_provider(code:str,state:str):
     r = httpx.get(f'https://oauth2.googleapis.com/token?client_id=774858042763-al4j641acm78t9v97p712i8e5nll10o6.apps.googleusercontent.com&client_secret=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&redirect_uri=https://ralae.com/google/cross&code={code}').json()
+    print(r)
     r = httpx.get(f'https://www.googleapis.com/auth/userinfo.profile?access_token={r["access_token"]}').json()
-    
-    return r
+    print(r)
+    return str(r)
     # return RedirectResponse(url=get_return_url({
     #     "url":state,"first_name":r['response'][0]['first_name'],
     #     "last_name":r['response'][0]['last_name'],"id":r['response'][0]['id'],
