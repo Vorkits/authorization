@@ -1,8 +1,6 @@
    
 # from app.api import crud
 # from app.api.models import NoteDB, NoteSchema
-from calendar import c
-from tkinter import E
 from fastapi import APIRouter, HTTPException, Path, FastAPI,Depends
 from typing import List 
 from app.providers.models import AuthModel,ResultModel,get_return_url
