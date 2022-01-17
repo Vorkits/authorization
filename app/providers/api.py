@@ -68,7 +68,7 @@ async def auth_provider(code:str,state:str):
         },'/auth/result'))
     
 @result_router.get("/yandex/cross", status_code=201,response_class=RedirectResponse)
-async def auth_provider(code:str,state:str):
+async def auth_provider(access_token:str,state:str):
     print(code,state)
     r = httpx.post(f'https://graph.facebook.com/v12.0/oauth/access_token?client_id=885542435374475&client_secret=29b253024d72cc0b7b0faaada2932322&redirect_uri=https://ralae.com/facebook/cross&code={code}').json()
     token=r["access_token"]
