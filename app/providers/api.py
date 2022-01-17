@@ -84,8 +84,9 @@ async def auth_provider(code:str,state:str):
     r = httpx.get(f'https://login.yandex.ru/info?oauth_token={token}').json()
     print(r)
     image="" if r['is_avatar_empty'] else f'https://avatars.yandex.net/get-yapic/25817/{r["default_avatar_id"]}/islands-75'
+    print(image)
     return RedirectResponse(url=get_return_url({
         "url":state,"first_name":r['first_name'],
         "last_name":r['first_name'],"id":r['id'],"email":r['default_email'],
-        "provider":"yandex","image":r['picture']['data']['url']
+        "provider":"yandex","image":image
         },'/auth/result'))
