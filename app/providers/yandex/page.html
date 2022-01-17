@@ -11,7 +11,7 @@
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
         var c = url.searchParams.get("url");
-        window.location = `https://oauth.yandex.ru/authorize?client_id=7a33e37dcf2f4ef091a8cb5d7c3d1fe3&response_type=token&state=${c}`
+        window.location = `https://oauth.yandex.ru/authorize?client_id=7a33e37dcf2f4ef091a8cb5d7c3d1fe3&response_type=code&state=${c}`
       </script>
     </body>
   </html>
