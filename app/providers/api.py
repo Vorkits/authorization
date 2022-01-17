@@ -71,7 +71,9 @@ async def auth_provider(code:str,state:str):
 @result_router.get("/yandex/cross", status_code=201,response_class=RedirectResponse)
 async def auth_provider(code:str,state:str):
     print(code,state)
-    r = httpx.post(f'https://oauth.yandex.ru/token?client_id=7a33e37dcf2f4ef091a8cb5d7c3d1fe3&client_secret=2310b7fbc9cd48efba0377953434dc13&grant_type=authorization_code&code={code}').json()
+    r = httpx.post(f'https://oauth.yandex.ru/token',
+                   data={'client_id': '7a33e37dcf2f4ef091a8cb5d7c3d1fe3','client_secret':'2310b7fbc9cd48efba0377953434dc13',
+                         'grant_type':'authorization_code','code':code}).json()
     # token=r["access_token"]
     # r = httpx.get(f'https://graph.facebook.com/debug_token?input_token={r["access_token"]}&access_token=885542435374475|Ksl4M07UJfp5rNBJ1VETMqmlpI4').json()
     # r = httpx.get(f'https://graph.facebook.com/{r["data"]["user_id"]}?fields=id,email,first_name,last_name,picture&access_token={token}').json()
