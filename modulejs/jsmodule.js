@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
     vk=document.getElementById('vkauth')
     gmail=document.getElementById('gmailauth')
     facebook=document.getElementById('facebookauth')
+    yandex=document.getElementById('yandexauth')
     url=document.getElementById('authwidget').getAttribute('data-url-auth');
     console.log(url)
     vk.addEventListener('click', function(){
@@ -18,5 +19,8 @@ document.addEventListener("DOMContentLoaded", function(){
      facebook.addEventListener('click', function(){
         redirect_to_auth('facebook',url);
      });
+     yandex.addEventListener('click', function(){
+      redirect_to_auth('yandex',url);
+   });
      
 });
