@@ -104,7 +104,8 @@ async def auth_provider(code:str,state:str):
             'client_secret':'6761eb078f754833ae41ecbb89e98461',
         },
     ).json()
-    token=r["access_token"]
+    print(r)
+    # token=r["access_token"]
     # r = httpx.get(f'https://login.yandex.ru/info?oauth_token={token}').json()
     print(r)
     # image="" if r['is_avatar_empty'] else f'https://avatars.yandex.net/get-yapic/{r["default_avatar_id"]}/islands-75'
