@@ -7,6 +7,7 @@ from app.providers.models import AuthModel,ResultModel,get_return_url
 from fastapi.responses import HTMLResponse,RedirectResponse
 from app.providers.emaildb import EmailRedis
 import httpx
+import hashlib
 
 result_router = APIRouter()
 
@@ -112,10 +113,14 @@ async def auth_provider(code:str,state:str):
 async def auth_provider(code:str,state:str):
     print(code,state)
     r = httpx.post(
-        f'https://api.ok.ru/oauth/token.do?code={code}&client_id=512001180573&client_secret=D11BF6D0D073F3D2E8348197&redirect_uri=https://ralae.com/ok/cross&grant_type=authorization_code').text
+        f'https://api.ok.ru/oauth/token.do?code={code}&client_id=512001180573&client_secret=D11BF6D0D073F3D2E8348197&redirect_uri=https://ralae.com/ok/cross&grant_type=authorization_code').json()
     print(r)
-    # token=r["access_token"]
-    # r = httpx.get(f'https://oauth.mail.ru/userinfo?access_token={token}').json()
+    token=r["access_token"]
+    session_secret_key=hashlib.md5((token + 'D11BF6D0D073F3D2E8348197').encode('utf8'))
+    #.hexdigest()
+    print(session_secret_key)
+    # sig = hashlib.md5(('friends.get' + conf.SECRET_SESSION_KEY).encode('utf8')).hexdigest()
+    # r = httpx.get(f'https://api.ok.ru/fb.do?method=friends.get&application_key=COJEAHKGDIHBABABA&sig=&access_token={token}').json()
     # print(r)
     # image=r['image'] if r.get('image') else ''
     # # print(image)
