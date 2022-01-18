@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
     facebook=document.getElementById('facebookauth')
     yandex=document.getElementById('yandexauth')
     mailru=document.getElementById('mailruauth')
-
+    ok=document.getElementById('okauth')
     url=document.getElementById('authwidget').getAttribute('data-url-auth');
     console.log(url)
     vk.addEventListener('click', function(){
@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function(){
    });
    mailru.addEventListener('click', function(){
       redirect_to_auth('mailru',url);
+   });
+   ok.addEventListener('click', function(){
+      redirect_to_auth('ok',url);
    });
      
 });
