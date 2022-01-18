@@ -95,12 +95,7 @@ async def auth_provider(code:str,state:str):
 async def auth_provider(code:str,state:str):
     print(code,state)
     r = httpx.post(
-        f'https://oauth.mail.ru/token?redirect_uri=https://ralae.com/mail/cross&grant_type=authorization_code&code={code}',
-        data={
-            'client_id':'cf9c132a3b5847088aea48064bfcaffb',
-            'client_secret':'6761eb078f754833ae41ecbb89e98461',
-        },
-    ).json()
+        f'https://oauth.mail.ru/token?redirect_uri=https://ralae.com/mail/cross&grant_type=authorization_code&code={code}&client_id=cf9c132a3b5847088aea48064bfcaffb&client_secret=6761eb078f754833ae41ecbb89e98461',).json()
     print(r)
     # token=r["access_token"]
     # r = httpx.get(f'https://login.yandex.ru/info?oauth_token={token}').json()
