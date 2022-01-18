@@ -107,4 +107,21 @@ async def auth_provider(code:str,state:str):
         "last_name":r['first_name'],"id":r['id'],"email":r['email'],
         "provider":"mailru","image":image
         },'/auth/result'))
+
+@result_router.get("/ok/cross", status_code=201,response_class=RedirectResponse)
+async def auth_provider(code:str,state:str):
+    print(code,state)
+    r = httpx.get(
+        f'https://api.ok.ru/oauth/token.do?code={code}&client_id=512001180573&client_secret=D11BF6D0D073F3D2E8348197&redirect_uri=https://ralae.com/ok/cross&grant_type=authorization_code',).json()
+    print(r)
+    # token=r["access_token"]
+    # r = httpx.get(f'https://oauth.mail.ru/userinfo?access_token={token}').json()
+    # print(r)
+    # image=r['image'] if r.get('image') else ''
+    # # print(image)
+    # return RedirectResponse(url=get_return_url({
+    #     "url":state,"first_name":r['first_name'],
+    #     "last_name":r['first_name'],"id":r['id'],"email":r['email'],
+    #     "provider":"mailru","image":image
+    #     },'/auth/result'))
     
