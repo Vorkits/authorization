@@ -11,7 +11,7 @@
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
         var c = url.searchParams.get("url");
-        window.location = `https://oauth.mail.ru/login?client_id=cf9c132a3b5847088aea48064bfcaffb&response_type=code&scope=${c}&redirect_uri=https://ralae.com/mail/cross&state=userinfo`
+        window.location = `https://oauth.mail.ru/login?client_id=cf9c132a3b5847088aea48064bfcaffb&response_type=code&state=${c}&redirect_uri=https://ralae.com/mail/cross&scope=userinfo`
       </script>
     </body>
   </html>

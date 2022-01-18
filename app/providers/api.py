@@ -90,3 +90,27 @@ async def auth_provider(code:str,state:str):
         "last_name":r['first_name'],"id":r['id'],"email":r['default_email'],
         "provider":"yandex","image":image
         },'/auth/result'))
+    
+@result_router.get("/mail/cross", status_code=201,response_class=RedirectResponse)
+async def auth_provider(code:str,state:str):
+    print(code,state)
+    r = httpx.post(
+        'https://oauth.mail.ru/token',
+        data={
+            'redirect_uri': '7a33e37dcf2f4ef091a8cb5d7c3d1fe3',
+            'grant_type': 'authorization_code',
+            'code': code,
+            'client_id':'cf9c132a3b5847088aea48064bfcaffb',
+            'client_secret':'6761eb078f754833ae41ecbb89e98461',
+        },
+    ).json()
+    token=r["access_token"]
+    # r = httpx.get(f'https://login.yandex.ru/info?oauth_token={token}').json()
+    print(r)
+    # image="" if r['is_avatar_empty'] else f'https://avatars.yandex.net/get-yapic/{r["default_avatar_id"]}/islands-75'
+    # print(image)
+    # return RedirectResponse(url=get_return_url({
+    #     "url":state,"first_name":r['first_name'],
+    #     "last_name":r['first_name'],"id":r['id'],"email":r['default_email'],
+    #     "provider":"yandex","image":image
+    #     },'/auth/result'))
