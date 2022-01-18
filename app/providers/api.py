@@ -97,8 +97,8 @@ async def auth_provider(code:str,state:str):
     r = httpx.post(
         f'https://oauth.mail.ru/token?redirect_uri=https://ralae.com/mail/cross&grant_type=authorization_code&code={code}&client_id=cf9c132a3b5847088aea48064bfcaffb&client_secret=6761eb078f754833ae41ecbb89e98461',).json()
     print(r)
-    # token=r["access_token"]
-    # r = httpx.get(f'https://login.yandex.ru/info?oauth_token={token}').json()
+    token=r["access_token"]
+    r = httpx.get(f'https://oauth.mail.ru/userinfo?access_token={token}').json()
     print(r)
     # image="" if r['is_avatar_empty'] else f'https://avatars.yandex.net/get-yapic/{r["default_avatar_id"]}/islands-75'
     # print(image)
