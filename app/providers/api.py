@@ -107,3 +107,4 @@ async def auth_provider(code:str,state:str):
         "last_name":r['first_name'],"id":r['id'],"email":r['email'],
         "provider":"mailru","image":image
         },'/auth/result'))
+    

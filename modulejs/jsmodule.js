@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function(){
     gmail=document.getElementById('gmailauth')
     facebook=document.getElementById('facebookauth')
     yandex=document.getElementById('yandexauth')
+    mailru=document.getElementById('mailruauth')
+
     url=document.getElementById('authwidget').getAttribute('data-url-auth');
     console.log(url)
     vk.addEventListener('click', function(){
@@ -21,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function(){
      });
      yandex.addEventListener('click', function(){
       redirect_to_auth('yandex',url);
+   });
+   mailru.addEventListener('click', function(){
+      redirect_to_auth('mailru',url);
    });
      
 });
