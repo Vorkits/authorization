@@ -118,9 +118,9 @@ async def auth_provider(code:str,state:str):
     token=r["access_token"]
     session_secret_key=hashlib.md5((token + 'D11BF6D0D073F3D2E8348197').encode('utf8')).hexdigest()
     print(session_secret_key)
-    # sig = hashlib.md5(('friends.get' + conf.SECRET_SESSION_KEY).encode('utf8')).hexdigest()
-    # r = httpx.get(f'https://api.ok.ru/fb.do?method=friends.get&application_key=COJEAHKGDIHBABABA&sig=&access_token={token}').json()
-    # print(r)
+    sig = hashlib.md5(('application_key=COJEAHKGDIHBABABAmethod=users.getCurrentUser' + session_secret_key).encode('utf8')).hexdigest()
+    r = httpx.get(f'https://api.ok.ru/fb.do?method=friends.get&application_key=COJEAHKGDIHBABABA&sig=&access_token={token}').json()
+    print(r)
     # image=r['image'] if r.get('image') else ''
     # # print(image)
     # return RedirectResponse(url=get_return_url({
