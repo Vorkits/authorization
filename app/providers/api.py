@@ -112,7 +112,7 @@ async def auth_provider(code:str,state:str):
 async def auth_provider(code:str,state:str):
     print(code,state)
     r = httpx.get(
-        f'https://api.ok.ru/oauth/token.do?code={code}&client_id=512001180573&client_secret=D11BF6D0D073F3D2E8348197&redirect_uri=https://ralae.com/ok/cross&grant_type=authorization_code',).json()
+        f'https://api.ok.ru/oauth/token.do?code={code}&client_id=512001180573&client_secret=D11BF6D0D073F3D2E8348197&redirect_uri=https://ralae.com/ok/cross&grant_type=authorization_code',).text
     print(r)
     # token=r["access_token"]
     # r = httpx.get(f'https://oauth.mail.ru/userinfo?access_token={token}').json()
