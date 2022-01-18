@@ -116,8 +116,7 @@ async def auth_provider(code:str,state:str):
         f'https://api.ok.ru/oauth/token.do?code={code}&client_id=512001180573&client_secret=D11BF6D0D073F3D2E8348197&redirect_uri=https://ralae.com/ok/cross&grant_type=authorization_code').json()
     print(r)
     token=r["access_token"]
-    session_secret_key=hashlib.md5((token + 'D11BF6D0D073F3D2E8348197').encode('utf8'))
-    #.hexdigest()
+    session_secret_key=hashlib.md5((token + 'D11BF6D0D073F3D2E8348197').encode('utf8')).hexdigest()
     print(session_secret_key)
     # sig = hashlib.md5(('friends.get' + conf.SECRET_SESSION_KEY).encode('utf8')).hexdigest()
     # r = httpx.get(f'https://api.ok.ru/fb.do?method=friends.get&application_key=COJEAHKGDIHBABABA&sig=&access_token={token}').json()
