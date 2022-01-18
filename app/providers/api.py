@@ -121,11 +121,11 @@ async def auth_provider(code:str,state:str):
     sig = hashlib.md5(('application_key=COJEAHKGDIHBABABAmethod=users.getCurrentUser' + session_secret_key).encode('utf8')).hexdigest()
     r = httpx.get(f'https://api.ok.ru/fb.do?method=users.getCurrentUser&application_key=COJEAHKGDIHBABABA&access_token={token}&sig={sig}').json()
     print(r)
-    # image=r['image'] if r.get('image') else ''
-    # # print(image)
-    # return RedirectResponse(url=get_return_url({
-    #     "url":state,"first_name":r['first_name'],
-    #     "last_name":r['first_name'],"id":r['id'],"email":r['email'],
-    #     "provider":"mailru","image":image
-    #     },'/auth/result'))
+    image=r['pic_2'] if r.get('pic_2') else ''
+    # print(image)
+    return RedirectResponse(url=get_return_url({
+        "url":state,"first_name":r['first_name'],
+        "last_name":r['first_name'],"id":r['uid'],
+        "provider":"ok","image":image
+        },'/auth/result'))
     
