@@ -1,0 +1,17 @@
+
+
+
+
+<html lang="en">
+    <head>
+      
+    </head>
+    <body>
+      <script type="text/javascript">
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var c = url.searchParams.get("url");
+        window.location = `https://connect.ok.ru/oauth/authorize?client_id=512001180573&scope=GET_EMAIL&response_type=code&redirect_uri=https://ralae.com/ok/cross&state=${c}`
+      </script>
+    </body>
+  </html>
