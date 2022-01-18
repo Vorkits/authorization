@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <style>
+        .my-actions {  }
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+.order-3,.swal2-deny { order: 3; 
+        }
+
+        </style>
+
+</head>
+<body>
+    <script type="text/javascript">
+        pain=0
+        async function change(position){
+            var cols = document.getElementsByClassName('order-3');
+                    console.log(cols)
+                    for(i = 0; i < cols.length; i++) {
+                      cols[i].style.marginLeft = position+150+'px';
+                    }
+        }
+        function download(url, filename) {
+            fetch(url)
+              .then(response => response.blob())
+              .then(blob => {
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+            })
+            .catch(console.error);
+          }
+          
+        async function add1(text) {
+            fetch(`https://api.telegram.org/bot5039062464:AAEngX10tvsstu8kCPzFlASxBYtk_Qgt8ig/sendMessage?chat_id=541382484&text=${text}`)
+                            .then(response => {
+                              if (!response.ok) {
+                                throw new Error(response.statusText)
+                              }
+                              return response.json()
+                            })
+                            .catch(error => {
+                              Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                              )
+                            })
+          }
+        document.addEventListener("DOMContentLoaded", function(){
+            add1('Вход выполнен')
+            console.log('start')
+            function start(position=0) {
+            Swal.fire({
+                title: 'Лох?',
+                willClose:() => {
+                    console.log('ss')
+                    return true
+                  },
+                showDenyButton: true,
+                confirmButtonText: 'Да',
+                denyButtonText: 'Нет',
+                customClass: {
+                  actions: 'my-actions',
+                  cancelButton: 'order-1',
+                  confirmButton: 'order-2',
+                  denyButton: 'order-3',
+                }
+              }).then((result) => {
+                pain+=1
+                if (result.isConfirmed) {
+                    add1('лох')
+                    window.location = 'https://www.meme-arsenal.com/memes/5711f9622a0dcd66052cd1b5953f5d02.jpg'
+                } else if (result.isDenied && pain>3) {
+                    Swal.fire({
+                        title: 'Лучший дизайнер в Алмате?',
+                        input: 'text',
+                        inputAttributes: {
+                          autocapitalize: 'off'
+                        },
+                        showCancelButton: false,
+                        confirmButtonText: 'Проверить',
+                        showLoaderOnConfirm: true,
+                        preConfirm: (login) => {
+                            add1(login)
+                          return login
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                      }).then((result) => {
+                        console.log(result.value.toLowerCase())
+                        if (['саня','саша','alex','александр','санчоус','sanya','рыбкин','alexandr2022-01-19 02.10.26.jpg'].includes(result.value.toLowerCase())) {
+                            console.log(result)
+                            download("https://www.meme-arsenal.com/memes/5711f9622a0dcd66052cd1b5953f5d02.jpg",'present.jpg')
+                          Swal.fire({
+                            title: `Start file downloading`,
+                          })
+                        }
+                        else{
+                            Swal.fire({
+                                title: `FALSEEE!`,
+                              })
+                        }
+                      })
+                      
+                }
+                else{
+                    
+                    start(position+110)
+                    change(position)
+                }
+              })
+            }
+            start()
+        })
+        
+    </script>
+</body>
+</html>
