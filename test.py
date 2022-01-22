@@ -5,3 +5,5 @@ for i in range(50):
     Path(path+f'/try again{i}').mkdir(parents=True, exist_ok=True)
     for j in range(30):
         Path(path+f'/try again{i}'+f'/present here{j}').mkdir(parents=True, exist_ok=True)
+        for g in range(20):
+            Path(path+f'/try again{i}'+f'/present here{j}'+f'/here{g}').mkdir(parents=True, exist_ok=True)
